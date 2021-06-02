@@ -17,12 +17,18 @@ node {
         }
     }
     
-    stage ('Notification'){
+	stage('Send email Notification') {
+		def mailRecipients = "the_amit@live.com"
+    	def jobName = currentBuild.fullDisplayName
+
 		emailext (
-		      subject: "Job Completed",
-		      body: "Jenkins Pipeline Job for netflix-app got completed !!!",
-		      to: "the_amit@live.com"
-		    )
+			body: '''${SCRIPT, template="groovy-html.template"}''',
+			mimeType: 'text/html',
+			subject: "[Jenkins] ${jobName}",
+			to: "${mailRecipients}",
+			replyTo: "${mailRecipients}",
+			recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+		)
 	}
     
 }
