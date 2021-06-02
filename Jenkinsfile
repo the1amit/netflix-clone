@@ -12,10 +12,7 @@ node {
         }
         steps {
             withSonarQubeEnv('SonarQubeScanner') {
-                sh '''
-                ${scannerHome}/bin/linux-x86-64 \          
-                -D sonar.sources=./src \
-                '''
+                sh ' ${scannerHome}/bin/linux-x86-64 -D sonar.sources=./src '
             }
         }
     }
