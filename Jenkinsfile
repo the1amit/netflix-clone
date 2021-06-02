@@ -14,6 +14,7 @@ node {
 	withSonarQubeEnv('SonarQubeScanner') {
 	    sh '''
                   sonar-scanner \
+		  	   ${JENKINS_HOME}/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_Scanner/bin/sonar-scanner \
 			  -Dsonar.projectKey=react \
 			  -Dsonar.sources=. \
 			  -Dsonar.host.url=http://vmpl1000.eastus.cloudapp.azure.com:9000 \
