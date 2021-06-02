@@ -15,5 +15,14 @@ node {
             app.push("${env.BUILD_NUMBER}")
             app.push('latest')
         }
-    } 
+    }
+    
+    stage ('Notification'){
+		emailext (
+		      subject: "Job Completed",
+		      body: "Jenkins Pipeline Job for netflix-app got completed !!!",
+		      to: "the_amit@live.com"
+		    )
+	}
+    
 }
