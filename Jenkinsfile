@@ -13,20 +13,20 @@ node {
     stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
             app.push("${env.BUILD_NUMBER}")
-            app.push('latest')hh
+            app.push('latest')
         }
     }
-    
-	stage('Send email Notification') {
-		def mailRecipients = "the_amit@live.com"
-    	def jobName = currentBuild.fullDisplayName
+    stage('Send email Notification') {
+				def mailRecipients = "the_amit@live.com"
+    		def jobName = currentBuild.fullDisplayName
 
-		emailext (
-			body: '''${SCRIPT, template="groovy-html.template"}''',
-			mimeType: 'text/html',
-			subject: "[Jenkins] ${jobName}",
-			to: "${mailRecipients}"
-		)
-	}
+				emailext (
+					body: '''${SCRIPT, template="groovy-html.template"}''',
+					mimeType: 'text/html',
+					subject: "[Jenkins] ${jobName}",
+					to: "${mailRecipients}"
+				)
+		}
+	
     
 }
