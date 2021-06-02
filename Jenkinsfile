@@ -8,8 +8,8 @@ node {
 
     stage('SonarQube analysis') {
        def scannerHome = tool 'SonarScanner 4.0';
-       withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
-	       sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=react -Dsonar.sources=. -Dsonar.host.url=http://vmpl1000.eastus.cloudapp.azure.com:9000 -Dsonar.login=c0f7391189348afef9684202569b17e9e02c7645"
+       withSonarQubeEnv('SonarQubeScanner') { // If you have configured more than one global server connection, you can specify its name
+	       sh "${scannerHome}/bin/sonar-scanner" 
        }
     }
 	
