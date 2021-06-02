@@ -25,9 +25,7 @@ node {
 			body: '''${SCRIPT, template="groovy-html.template"}''',
 			mimeType: 'text/html',
 			subject: "[Jenkins] ${jobName}",
-			to: "${mailRecipients}",
-			replyTo: "${mailRecipients}",
-			recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+			to: "${mailRecipients}"
 		)
 	}
     
