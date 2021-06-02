@@ -12,7 +12,13 @@ node {
         }
        
 	withSonarQubeEnv('SonarQubeScanner') {
-	    sh '/opt/${scannerHome}/bin/linux-x86-64 -D sonar.sources=./src '
+	    sh '''
+                  sonar-scanner \
+			  -Dsonar.projectKey=react \
+			  -Dsonar.sources=. \
+			  -Dsonar.host.url=http://vmpl1000.eastus.cloudapp.azure.com:9000 \
+			  -Dsonar.login=c0f7391189348afef9684202569b17e9e02c7645
+                '''
 	}
       
     }
