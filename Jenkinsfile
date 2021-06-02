@@ -5,6 +5,21 @@ node {
         checkout scm
     }
 
+
+    stage('SonarQube analysis') {
+        environment {
+            scannerHome = tool 'sonarqube-8.9.0.43852'
+        }
+        steps {
+            withSonarQubeEnv('SonarQubeScanner') {
+                sh '''
+                ${scannerHome}/bin/linux-x86-64 \          
+                -D sonar.sources=./src \
+                '''
+            }
+        }
+    }
+	
     stage('Build image') {
        app = docker.build("the1amit/netflix-clone")
     }
