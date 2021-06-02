@@ -10,11 +10,11 @@ node {
         environment {
             scannerHome = tool 'sonarqube-8.9.0.43852'
         }
-        steps {
-            withSonarQubeEnv('SonarQubeScanner') {
-                sh ' ${scannerHome}/bin/linux-x86-64 -D sonar.sources=./src '
-            }
-        }
+       
+	withSonarQubeEnv('SonarQubeScanner') {
+	    sh ' ${scannerHome}/bin/linux-x86-64 -D sonar.sources=./src '
+	}
+      
     }
 	
     stage('Build image') {
