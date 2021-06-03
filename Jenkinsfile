@@ -1,6 +1,9 @@
 node {
     def app
 
+    tools {
+        helm 'apache-maven-3.0.1' 
+    }	
     stage('Clone repository') {
         checkout scm
     }
@@ -26,13 +29,7 @@ node {
     }
 	
     stage('Deployment') {
-	script {
-	  container('helm') {
-	      // Init authentication and config for your kubernetes cluster
-	      sh("helm init --client-only --skip-refresh")
-	      sh("helm upgrade --install --wait reactjs-app ./netflix-charts/")
-	   }
-        }
+	    sh 'helm init'
     }
 	
     stage('Send email Notification') {
