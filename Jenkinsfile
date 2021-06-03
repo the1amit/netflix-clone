@@ -27,6 +27,7 @@ node {
 	
     stage('Deployment') {
 	    sh 'ls'
+	    sh 'helm version'
 	    sh '/usr/sbin/helm upgrade --install --wait reactjs-app ./netflix-charts/'
     }
 	
