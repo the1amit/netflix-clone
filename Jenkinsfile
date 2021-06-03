@@ -27,7 +27,7 @@ node {
 	
     stage('Deployment') {
 	    sh 'ls'
-	    sh 'helm upgrade --install --wait reactjs-app ./netflix-charts/'
+	    sh 'sudo helm upgrade --install --wait reactjs-app ./netflix-charts/'
     }
 	
     stage('Send email Notification') {
