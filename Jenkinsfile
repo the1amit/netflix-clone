@@ -24,6 +24,18 @@ node {
             app.push('latest')
         }
     }
+	
+    stage('Deployment') {
+	script {
+		try{
+			sh 'helm install reactjs-app ./netflix-charts/'
+		}
+		catch(error){
+			sh 'helm upgrade reactjs-app ./netflix-charts/'
+		}
+	}
+    }
+	
     stage('Send email Notification') {
 	def mailRecipients = "the_amit@live.com"
     	def jobName = currentBuild.fullDisplayName
