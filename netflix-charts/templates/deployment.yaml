@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app
+  labels:
+    app: netflix-app
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: netflix-app
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: netflix-app
+        tier: web
+    spec:
+      containers:
+      - name: nodejs
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: {{ .Values.service.port }}
+        resources:
+        {{ toYaml .Values.resources | nindent 12 }}
