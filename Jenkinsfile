@@ -26,14 +26,14 @@ node {
     }
 	
     stage('Deployment') {
-	script {
-		try{
-			sh 'helm install reactjs-app ./netflix-charts/'
-		}
-		catch(error){
-			sh 'helm upgrade reactjs-app ./netflix-charts/'
-		}
+	
+	try{
+		sh 'helm install reactjs-app ./netflix-charts/'
 	}
+	catch(error){
+		sh 'helm upgrade reactjs-app ./netflix-charts/'
+	}
+	
     }
 	
     stage('Send email Notification') {
