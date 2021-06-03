@@ -1,9 +1,6 @@
 node {
     def app
-
-    tools {
-        helm 'apache-maven-3.0.1' 
-    }	
+	
     stage('Clone repository') {
         checkout scm
     }
