@@ -26,14 +26,13 @@ node {
     }
 	
     stage('Deployment') {
-	
-	try{
-		sh 'helm install reactjs-app ./netflix-charts/'
-	}
-	catch(error){
-		sh 'helm upgrade reactjs-app ./netflix-charts/'
-	}
-	
+	script {
+		container('helm') {
+		      // Init authentication and config for your kubernetes cluster
+		      sh("helm init --client-only --skip-refresh")
+		      sh("helm upgrade --install --wait reactjs-app ./netflix-charts/")
+	   	}
+         }
     }
 	
     stage('Send email Notification') {
