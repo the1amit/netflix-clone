@@ -24,19 +24,18 @@ node {
             app.push('latest')
         }
     }
-	
-	podTemplate(containers: [containerTemplate(name: 'helm', image: 'alpine/helm', ttyEnabled: true, command: 'cat')]) {
-
-		node("HelmDeployment") 
-			stage('Deploy Helm Charts') {
-				container('helm') {
-					stage('Deploy Charts') {
-						sh '/usr/sbin/helm upgrade --install --wait reactjs-app ./netflix-charts/'
-					}
-				}	
-			}
+    
+    podTemplate(containers: [containerTemplate(name: 'helm', image: 'alpine/helm', ttyEnabled: true, command: 'cat')]) {
+	    node("HelmDeployment") {
+		stage('Deploy Helm Charts') {
+		  container('helm') {
+			  stage('Deploy Charts') {
+				sh '/usr/sbin/helm upgrade --install --wait reactjs-app ./netflix-charts/'
+			   }
+		  }	
 		}
 	}
+  }
 	
     stage('Send email Notification') {
 	def mailRecipients = "the_amit@live.com"
