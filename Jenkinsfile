@@ -26,7 +26,7 @@ node {
     }
     
     podTemplate(containers: [containerTemplate(name: 'helm', image: 'alpine/helm', ttyEnabled: true, command: 'cat')]) {
-	    node("HelmDeployment") {
+	    node("master") {
 		stage('Deploy Helm Charts') {
 		  container('helm') {
 			  stage('Deploy Charts') {
